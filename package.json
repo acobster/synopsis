@@ -1,0 +1,12 @@
+{
+  "name": "synopsis",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Coby Tamayo <me@cobytamayo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.12.0",
+    "popcornnotify": "^1.0.1"
+  }
+}
