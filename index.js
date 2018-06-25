@@ -2,6 +2,8 @@
 const notify = require('popcornnotify')
 const yaml = require('js-yaml')
 const fs = require('fs')
+const rp = require('request-promise')
+const { JSDOM } = require('jsdom')
 
 
 main()
@@ -24,10 +26,13 @@ function main() {
   const popcornInfo = { apiKey: config.popcorn_api_key }
 
   // send a new plot
-  config.contacts.forEach(contact => notify(contact, getPlot(), popcornInfo))
+  getPlot()
+    .then(plot => config.contacts.forEach(
+      contact => notify(contact, plot, popcornInfo)))
+
+
 
 }
-
 
 /**
  * Generate a plot.
@@ -35,6 +40,22 @@ function main() {
  * @return string
  */
 function getPlot() {
-  // TODO obvi
-  return 'random plot text here'
+  return new Promise((resolve, reject) => {
+    rp('https://words.bighugelabs.com/plot.php').then(html => {
+      const doc = new JSDOM(html).window.document
+
+      let plot
+      try {
+        plot = doc.querySelector('.loglines li').textContent
+      } catch(e) {
+        reject('An automated texting system goes awry, with hilarious results')
+      }
+
+      if (plot) {
+        resolve(plot)
+      } else {
+        reject('An automated texting system goes off the rails.')
+      }
+    }).catch(err => reject(err.message))
+  })
 }

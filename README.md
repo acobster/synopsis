@@ -5,14 +5,13 @@ Text your friends randomly generated story plots
 ## Requirements
 
 * Node
-* BigHubLabs API key
 * Popcorn Notify API key
 
 ## Setup
 
 * Clone this repo
 * Run `yarn`
-* Setup your config.yaml with BigHubLabs API key, Popcord Notify API key,  and phone numbers/emails
+* Setup your config.yaml with Popcord Notify API key and phone numbers/emails
 
 ```sh
 git clone https://github.com/acobster/synopsis
@@ -30,9 +29,10 @@ contacts:
 - 6665556666
 - someone@example.com
 
-popcorn_api_key: YOUR_POPCORN_API_KEY
+error_contacts:
+- 1234567890
 
-big_huge_api_key: YOUR_BIG_HUGE_API_KEY
+popcorn_api_key: YOUR_POPCORN_API_KEY
 ...
 ```
 

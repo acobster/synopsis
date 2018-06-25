@@ -4,6 +4,9 @@ contacts:
 - 6665556666
 - someone@example.com
 
+error_contacts:
+- admin@example.xyz
+
 popcorn_api_key: YOUR_POPCORN_API_KEY
 
 big_huge_api_key: YOUR_BIG_HUGE_API_KEY
